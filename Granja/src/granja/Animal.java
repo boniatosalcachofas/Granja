@@ -7,7 +7,13 @@ public class Animal {
 	private int edad;
 	
 	
-	
+	//Constructores
+	public Animal(String nombre, double peso, int edad) {
+		super();
+		this.nombre = nombre;
+		this.peso = peso;
+		this.edad = edad;
+	}
 	//Getters and setters
 	public String getNombre() {
 		return nombre;
