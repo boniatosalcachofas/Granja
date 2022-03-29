@@ -1,5 +1,9 @@
 package granja;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Principal {
 	
 	public static Vaca arrayVaca[] = new Vaca[3];
@@ -24,6 +28,8 @@ public class Principal {
 	}
 	
 	public static void menuPrincipal() {
+		//posible error
+		Scanner scInt = new Scanner(System.in);
 		
 		System.out.println("MENU PRINCIPAL\n"
 				+ "1.- Listado de animales\n"
@@ -35,6 +41,71 @@ public class Principal {
 				+ "7.- Listado de animales completo\n"
 				+ "8.- Obtencion de leche\n"
 				+ "9.- Venta de leche");
+		
+		int eleccion = scInt.nextInt();
+		
+		switch (eleccion) {
+		
+		case 1: listadoAnimales();
+		break;
+		
+		case 2: mostrarTipoAnimal();
+		
+		}
+	}
+	
+	public static void listadoAnimales() {
+		
+		
+		
+		System.out.println("LISTADO DE ANIMALES");
+
+		for (int i = 0; i < arrayVaca.length; i++) {
+
+			System.out.println(arrayVaca[i].mostrarDatos());
+
+		}
+		
+		System.out.println(cerdo.mostrarDatos());
+		
+		for (int i = 0; i < arrayOveja.length; i++) {
+
+			System.out.println(arrayOveja[i].mostrarDatos());
+
+		}
+		
+		volverMenu();
+		
+	}
+
+	public static void volverMenu() {
+		//posible error
+		Scanner scLine = new Scanner(System.in);
+		
+		System.out.println("\nPulse INTRO para volver al menu principal");
+		scLine.nextLine();
+	}
+	
+	public static void mostrarTipoAnimal() {
+		
+		Animal animales[] = {cerdo};
+		animal = arrayVaca.con
+			
+		
+	}
+	
+//	public static void pruebaEliminarAnimal() {
+//		
+//		int eleccion = 1;
+//		arrayVaca[0] = null;
+//		int variableAux = 0;
+//		
+//		for(int i = 0; i <arrayVaca.length; i++) {
+//			
+//			if(i != eleccion-1) arrayVaca[i] = arrayVaca[i+variableAux];
+//			else variableAux++;
+//		}
+//		
 		
 	}
 

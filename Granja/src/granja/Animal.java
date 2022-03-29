@@ -7,6 +7,13 @@ public class Animal {
 	private int edad;
 	
 	
+	public String mostrarDatos() {
+		
+		return nombre + " : " + " peso: " + peso + " Kg, " + " edad: " + edad + " anyos";
+		
+	}
+	
+	
 	//Constructores
 	public Animal(String nombre, double peso, int edad) {
 		super();
