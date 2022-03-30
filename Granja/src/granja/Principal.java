@@ -1,10 +1,13 @@
 package granja;
 
 import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Principal {
+	
+	public static double ganancias = 0;
+	public static double cantidadLeche = 0;
 	
 	public static Vaca arrayVaca[] = new Vaca[3];
 	public static Cerdo cerdo;
@@ -72,9 +75,11 @@ public class Principal {
 		case 7: mostrarListadoCompleto();
 		break;
 		
-		case 8: break;
+		case 8: obtenerLeche(); 
+		break;
 		
-		case 9: break;
+		case 9: ventaLeche(); 
+		break;
 		}
 	}
 	
@@ -283,6 +288,62 @@ public class Principal {
 		
 	}
 	
+	public static void obtenerLeche() {
+		
+		Random r = new Random();
+		
+		for(int i = 0; i < animalesTotales.length; i++) {
+			if (animalesTotales[i] instanceof Vaca) {
+				
+				Vaca vacaTemporal = (Vaca) animalesTotales[i];
+				
+				if (arrayVaca[i] != null && vacaTemporal.isUsoAnimal()) {
+
+					double lecheObtenida = r.nextDouble(6) + 3;
+					cantidadLeche = cantidadLeche + lecheObtenida;
+					lecheObtenida = Math.round(lecheObtenida * 100.0) / 100.0;
+
+					System.out.println("Leche obtenida por " + vacaTemporal.getNombre() + ": " + lecheObtenida + " l");
+
+				}
+			}
+
+		}
+		volverMenu();
+		
+		
+	}
+	
+	public static void ventaLeche() {
+		Scanner scDouble = new Scanner(System.in);
+		
+		System.out.println("Leche en stock: " + Math.round(cantidadLeche*100.0)/100.0
+							+ "\n¿Cuanta se quiere vender?");
+		
+		double cantidad = 0;
+		try {
+			cantidad = scDouble.nextDouble();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Caracter no permitido");
+		}
+		
+		
+		if(cantidad > cantidadLeche) {
+			
+			System.out.println("No se dispone de esa cantidad");
+			
+		}else {
+			
+			cantidadLeche = cantidadLeche - cantidad;
+			ganancias = ganancias + (cantidad*0.5);
+			
+			System.out.println("Ganancias por esta venta: " + (cantidad*0.5) + " euros" +
+								"\nGanancias acumuladas: " + ganancias + " euros");
+		}
+		volverMenu();
+	}
+	
 	
 
 	public static Animal[] crearArray() {
@@ -312,20 +373,7 @@ public class Principal {
 	}
 	
 	
-	
-//	public static void pruebaEliminarAnimal() {
-//		
-//		int eleccion = 1;
-//		arrayVaca[0] = null;
-//		int variableAux = 0;
-//		
-//		for(int i = 0; i <arrayVaca.length; i++) {
-//			
-//			if(i != eleccion-1) arrayVaca[i] = arrayVaca[i+variableAux];
-//			else variableAux++;
-//		}
-//		
-		
+
 	}
 
 
