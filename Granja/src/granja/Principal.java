@@ -9,6 +9,7 @@ public class Principal {
 	public static Vaca arrayVaca[] = new Vaca[3];
 	public static Cerdo cerdo;
 	public static Oveja arrayOveja[] = new Oveja[3];
+	public static Animal animalesTotales[];
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -23,7 +24,11 @@ public class Principal {
 		arrayOveja[1] = new Oveja("Coral", 50, 4, false);
 		arrayOveja[2] = new Oveja("Cebra", 37.6, 1, true);
 		
-		menuPrincipal();
+		animalesTotales = crearArray();
+		while(true) {
+			menuPrincipal();
+		}
+		
 		
 	}
 	
@@ -50,7 +55,26 @@ public class Principal {
 		break;
 		
 		case 2: mostrarTipoAnimal();
+		break;
 		
+		case 3: sumarAnyo();
+		break;
+		
+		case 4: cambiarPeso();
+		break;
+		
+		case 5: matarAnimal();
+		break;
+		
+		case 6: adquirirCerdo();
+		break;
+		
+		case 7: mostrarListadoCompleto();
+		break;
+		
+		case 8: break;
+		
+		case 9: break;
 		}
 	}
 	
@@ -60,22 +84,223 @@ public class Principal {
 		
 		System.out.println("LISTADO DE ANIMALES");
 
-		for (int i = 0; i < arrayVaca.length; i++) {
+		for (int i = 0; i < animalesTotales.length; i++) {
 
-			System.out.println(arrayVaca[i].mostrarDatos());
-
-		}
-		
-		System.out.println(cerdo.mostrarDatos());
-		
-		for (int i = 0; i < arrayOveja.length; i++) {
-
-			System.out.println(arrayOveja[i].mostrarDatos());
+			if(animalesTotales[i] != null)System.out.println(animalesTotales[i].mostrarDatos());
 
 		}
 		
 		volverMenu();
 		
+	}
+	
+	public static void mostrarTipoAnimal() {
+
+		//posible error
+		Scanner scInt = new Scanner(System.in);
+		
+		int contador = 1;
+
+		for(int i = 0; i < animalesTotales.length; i++) {
+			
+			if(animalesTotales[i] != null)System.out.println((i+contador) + ".- " + animalesTotales[i].getNombre()); 
+			
+			else contador--;
+			
+		}
+		
+		int eleccion = scInt.nextInt()-1;
+		
+		
+		for(int i = 0; i<animalesTotales.length; i++) {
+			
+			
+			if(animalesTotales[i] == null) eleccion++;
+			if(i == eleccion) {
+				
+				if(animalesTotales[i] instanceof Vaca) System.out.println(animalesTotales[i].getNombre() + " es una vaca");
+				else if(animalesTotales[i] instanceof Oveja) System.out.println(animalesTotales[i].getNombre() + " es una oveja");
+				else if(animalesTotales[i] instanceof Cerdo) System.out.println(animalesTotales[i].getNombre() + " es un cerdo");
+				break;
+			}
+			
+			if(i == animalesTotales.length-1) System.out.println("Animal no existente");
+			
+		}
+		
+		volverMenu();
+	}
+	
+	public static void sumarAnyo() {
+		
+		//posible error
+		Scanner scInt = new Scanner(System.in);
+		
+		int contador = 1;
+		
+		for (int i = 0; i < animalesTotales.length; i++) {
+
+			if(animalesTotales != null)System.out.println((i + contador) + ".- " + animalesTotales[i].getNombre() + " edad: " + animalesTotales[i].getEdad()); 
+			
+			else contador--;
+		}
+
+		System.out.println("Elija el animal");
+		int eleccion = scInt.nextInt()-1;
+
+		for (int i = 0; i < animalesTotales.length; i++) {
+
+			if (animalesTotales[i] == null)eleccion++;
+			if (i == eleccion) {
+				
+				animalesTotales[i].sumarEdad();
+				break;
+				
+				
+			}
+			if(i == animalesTotales.length-1) System.out.println("Animal no existente");
+		}
+		
+		volverMenu();
+	}
+	
+	
+	public static void cambiarPeso() {
+
+		// posible error
+		Scanner scInt = new Scanner(System.in);
+		
+		int contador = 1;
+
+		for (int i = 0; i < animalesTotales.length; i++) {
+
+			if (animalesTotales != null)
+				System.out.println(
+						(i + contador) + ".- " + animalesTotales[i].getNombre() + " edad: " + animalesTotales[i].getEdad()); 
+			
+			else contador--;
+
+		}
+
+		System.out.println("Elija el animal");
+		int eleccion = scInt.nextInt()-1;
+		
+		for (int i = 0; i < animalesTotales.length; i++) {
+
+			if (animalesTotales[i] == null)eleccion++;
+			if (i == eleccion) {
+				
+				double nuevoPeso = scInt.nextDouble();
+				
+				animalesTotales[i].cambiarPesoAnimal(nuevoPeso);
+				break;
+				
+			}
+			if(i == animalesTotales.length-1) System.out.println("Animal no existente");
+		}
+		
+		volverMenu();
+
+	}
+	
+	
+	public static void matarAnimal() {
+		
+		// posible error
+				Scanner scInt = new Scanner(System.in);
+				
+				int contador = 1;
+
+				for (int i = 0; i < animalesTotales.length; i++) {
+
+					if (animalesTotales[i] != null)
+						System.out.println(
+								(i + contador) + ".- " + animalesTotales[i].getNombre() + " edad: " + animalesTotales[i].getEdad()); 
+					
+					else contador--;
+
+				}
+
+				System.out.println("Elija el animal");
+				int eleccion = scInt.nextInt()-1;
+				
+				for (int i = 0; i < animalesTotales.length; i++) {
+
+					if (animalesTotales[i] == null)eleccion++;
+					if (i == eleccion) {
+						
+						System.out.println("El animal " + animalesTotales[i].getNombre() + " ha muerto");
+						animalesTotales[i] = null;
+						break;
+						
+					}
+					if(i == animalesTotales.length-1) System.out.println("Animal no existente");
+				}
+				
+				volverMenu();
+		
+	}
+	
+	public static void adquirirCerdo() {
+		
+		boolean condicion = false;
+
+		for (int i = 0; i < animalesTotales.length; i++) {
+
+			if (animalesTotales[i] instanceof Cerdo) {
+
+				System.out.println("hay cerdo");
+
+				volverMenu();
+				condicion = true;
+			}
+		}
+		if (!condicion) {
+
+			Cerdo cerdoNuevo = new Cerdo();
+			cerdoNuevo.comprarCerdo();
+
+			animalesTotales[6] = cerdoNuevo;
+		}
+		
+		volverMenu();
+
+	}
+	
+	public static void mostrarListadoCompleto() {
+		
+		System.out.println("LISTADO DE ANIMALES COMPLETO");
+		
+		for(int i = 0; i < animalesTotales.length; i++) {
+			
+			if(animalesTotales[i] instanceof Vaca) {Vaca vacaTemporal = (Vaca) animalesTotales[i]; System.out.println(vacaTemporal.mostrarDatosCompletos());}
+			else if(animalesTotales[i] instanceof Oveja) {Oveja ovejaTemporal = (Oveja) animalesTotales[i]; System.out.println(ovejaTemporal.mostrarDatosCompletos());}
+			else if(animalesTotales[i] instanceof Cerdo) {Cerdo cerdoTemporal = (Cerdo) animalesTotales[i]; System.out.println(cerdoTemporal.mostrarDatosCompletos());}
+			
+		}
+		
+		volverMenu();
+		
+	}
+	
+	
+
+	public static Animal[] crearArray() {
+		Animal animales[] = new Animal[7];
+
+		for (int i = 0; i < arrayVaca.length; i++) {
+
+			animales[i] = arrayVaca[i];
+
+		}
+		for (int i = 0; i < arrayOveja.length; i++) {
+
+			animales[i+arrayVaca.length] = arrayOveja[i];
+
+		}
+		animales[animales.length-1] = cerdo;
+		
+		return animales;
 	}
 
 	public static void volverMenu() {
@@ -86,13 +311,7 @@ public class Principal {
 		scLine.nextLine();
 	}
 	
-	public static void mostrarTipoAnimal() {
-		
-		Animal animales[] = {cerdo};
-		animal = arrayVaca.con
-			
-		
-	}
+	
 	
 //	public static void pruebaEliminarAnimal() {
 //		
@@ -109,4 +328,4 @@ public class Principal {
 		
 	}
 
-}
+
